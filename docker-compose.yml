@@ -1,0 +1,12 @@
+version: '3.0'
+services:
+  postgresql-12:
+    image: postgres:12-alpine
+    ports:
+      - 15432:5432
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=root
+volumes:
+  db_data: {}

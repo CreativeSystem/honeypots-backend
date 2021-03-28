@@ -5,12 +5,12 @@
     "target": "es2019",
     "esModuleInterop": true,
     "sourceMap": true,
-    "rootDirs": ["src", "tests"],
+    "lib": ["esnext"],
+    "rootDirs": ["src"],
     "baseUrl": "src",
     "paths": {
-      "@/tests/*": ["../tests/*"],
       "@/*": ["*"]
     }
   },
-  "include": ["src", "tests"]
+  "include": ["src"]
 }
