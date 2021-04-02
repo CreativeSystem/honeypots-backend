@@ -1,2 +1,2 @@
 export * from './dto'
-export * from './use-case'
+export { default as registerUser } from './use-case'

@@ -1,10 +1,12 @@
 import { encode } from '@/utils/password-encoder'
 import { prisma } from '@/utils/prisma'
+import { validator } from '@/validators/validator-decorator'
 
 import { RegisterUserDTO,CreatedUserDTO } from './dto'
+import { registerUserRules } from './rules'
 
-export const registerUser = async (userDto: RegisterUserDTO): Promise<CreatedUserDTO> => {
-  const { email,name,password,birthDate } = userDto
+const registerUser = async (userDto: RegisterUserDTO): Promise<CreatedUserDTO> => {
+  const { email,name,password,birth_date: birthDate } = userDto
   const passwordHash = await encode(password)
 
   const user = await prisma.user.create({
@@ -20,8 +22,10 @@ export const registerUser = async (userDto: RegisterUserDTO): Promise<CreatedUse
     id: user.id,
     name: user.name,
     email: user.email,
-    birthDate: user.birthDate,
-    createdAt: user.createdAt,
-    updatedAt: user.updatedAt
+    birth_date: user.birthDate,
+    created_at: user.createdAt,
+    updated_at: user.updatedAt
   }
 }
+
+export default validator(registerUser,registerUserRules)

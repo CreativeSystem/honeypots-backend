@@ -6,9 +6,9 @@ export const registerUserController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const { email,name,birthDate,password } = req.body as RegisterUserDTO
+  const { email,name,birth_date,password,password_confirmation } = req.body as RegisterUserDTO
 
-  const user = await registerUser({ email,name,birthDate,password })
+  const user = await registerUser({ email,name,birth_date,password,password_confirmation })
 
   return res.status(201).json(user)
 }
