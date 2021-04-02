@@ -7,7 +7,7 @@ import morgan from 'morgan'
 import passport from '@/config/passport'
 import { registerUserController } from '@/controllers'
 
-import { errorHandlerDecorator } from './middlewares'
+import { errorHandlerDecorator,validatorErrorHandler,errorHandler } from './middlewares'
 
 const router = Router()
 
@@ -30,5 +30,8 @@ router.get(
 )
 
 router.post('/users',errorHandlerDecorator(registerUserController))
+
+router.use(validatorErrorHandler)
+router.use(errorHandler)
 
 export default router
