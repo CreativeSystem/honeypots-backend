@@ -4,7 +4,7 @@ const verify: VerifyFunction = (accessToken, refreshToken, profile, next) => {
   next(null, profile)
 }
 
-export default new Strategy({
+export const facebookStrategy = new Strategy({
   clientID: process.env.FACEBOOK_CLIENT_ID,
   clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
   callbackURL: process.env.FACEBOOK_CALLBACK_URL,

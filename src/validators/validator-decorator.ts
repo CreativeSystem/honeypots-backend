@@ -1,6 +1,6 @@
 import Validator from 'validatorjs'
 
-import { ValidationError } from './validator-error'
+import { ValidationError } from '@/errors'
 
 type DecoratedFunction<T,U> = (param: T) => Promise<U>
 

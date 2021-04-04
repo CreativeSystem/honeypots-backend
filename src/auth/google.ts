@@ -11,7 +11,7 @@ const verify: VerifyFunction = (accessToken, refreshToken, profile, next) => {
   next(null, profile)
 }
 
-export default new Strategy({
+export const googleStrategy = new Strategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: process.env.GOOGLE_CALLBACK_URL
