@@ -4,7 +4,7 @@ import faker from 'faker'
 
 import { Prisma, PrismaClient,PrismaPromise } from '@prisma/client'
 
-import {encode} from '../src/utils/password-encoder'
+import { Password } from '../src/utils/password'
 
 const progress = new SingleBar({
   format: `${yellow('{value}/{total}')} | ${green('{bar}')} | ${cyan('{step}')}`,
@@ -39,7 +39,8 @@ async function clear<T>(name:string, prismaDelegate:PrismaDelegate<T>) {
       createdAt:{
         lt: new Date()
       }
-    }
+    },
+    
   })
 }
 
@@ -49,9 +50,9 @@ async function main() {
     step: "Initializing"
   });
 
-  await clear('Recipe',prisma.recipe)
-  await clear('Category',prisma.category)
-  await clear('User',prisma.user)
+  // await clear('Recipe',prisma.recipe)
+  // await clear('Category',prisma.category)
+  // await clear('User',prisma.user)
 
   progress.increment({
     step: "Seeding User"
@@ -66,7 +67,13 @@ async function main() {
         name: `${firstName} ${lastName}`,
         email: faker.internet.email(firstName.toLowerCase(), lastName.toLowerCase()),
         birthDate: faker.date.between(new Date(1990,1,1), new Date(2002,12,31)),
-        passwordHash : await encode('12345678')
+        passwordHash : await Password.encode('12345678')
+      }
+    })
+
+    await prisma.category.create({
+      data:{
+        name: `Bolos`
       }
     })
   }

@@ -1,6 +1,6 @@
 import { Strategy,VerifyFunction } from 'passport-facebook'
 
-const verify: VerifyFunction = (accessToken, refreshToken, profile, next) => {
+const verify: VerifyFunction = (_, __, profile, next) => {
   next(null, profile)
 }
 

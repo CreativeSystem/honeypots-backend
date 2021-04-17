@@ -7,7 +7,7 @@ type VerifyFunction = (
   done: VerifyCallback
 ) => void
 
-const verify: VerifyFunction = (accessToken, refreshToken, profile, next) => {
+const verify: VerifyFunction = (_, __, profile, next) => {
   next(null, profile)
 }
 

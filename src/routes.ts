@@ -5,7 +5,14 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 
 import passport from '@/config/passport'
-import { loginUserController, registerUserController } from '@/controllers'
+import {
+  loginUserController,
+  registerUserController,
+  categoriesController,
+  categoryRecipesController,
+  recipeDetailController,
+  createRecipeController
+} from '@/controllers'
 
 import { errorHandlerDecorator,validatorErrorHandler,errorHandler,useCaseHandler } from './middlewares'
 
@@ -39,9 +46,17 @@ router.post(
 
 router.post('/users',errorHandlerDecorator(registerUserController))
 
+router.get('/category',errorHandlerDecorator(categoriesController))
+router.get('/category/:id/recipes',errorHandlerDecorator(categoryRecipesController))
+
+router.get('/recipe/:id',errorHandlerDecorator(recipeDetailController))
+router.get('/recipe/search', (req,res) => res.json(req.user))
+
 // Private Endpoints
 
 router.use(passport.authenticate('jwt'))
+
+router.post('/recipe',errorHandlerDecorator(createRecipeController))
 
 router.get('/feed', (req,res) => res.json(req.user))
 

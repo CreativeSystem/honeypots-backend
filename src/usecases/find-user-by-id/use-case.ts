@@ -17,6 +17,8 @@ export const findUserById = async (id: string): Promise<UserDTO> => {
 
   return {
     id: user.id,
-    email: user.email
+    email: user.email,
+    name: user.name,
+    picture: user.picture
   }
 }

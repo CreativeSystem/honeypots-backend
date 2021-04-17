@@ -5,6 +5,7 @@ type ValidatorRules<T> = {
   | string
   | Array<string | TypeCheckingRule>
   | ValidatorRules<T[P]>
+  | ValidatorRules<P>
 }
 
 export function createValidatorRules <T = any> (rules: ValidatorRules<T>): Rules {

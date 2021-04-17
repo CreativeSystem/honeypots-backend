@@ -1,2 +1,6 @@
+export * from './category-controller'
+export * from './category-recipes-controller'
+export * from './create-recipe-controller'
 export * from './login-controller'
 export * from './register-user-controller'
+export * from './recipe-detail-controller'
