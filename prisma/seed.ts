@@ -46,7 +46,7 @@ async function clear<T>(name:string, prismaDelegate:PrismaDelegate<T>) {
 
 async function main() {
 
-  progress.start(2, 0, {
+  progress.start(3, 0, {
     step: "Initializing"
   });
 
@@ -70,10 +70,32 @@ async function main() {
         passwordHash : await Password.encode('12345678')
       }
     })
+  }
 
+  progress.increment({
+    step: "Seeding Category"
+  });
+
+  const categories = ["bolos e tortas doces",
+    "carnes",
+    "aves",
+    "peixes e frutos do mar",
+    "saladas",
+    "molhos e acompanhamentos",
+    "sopas",
+    "massas",
+    "bebidas",
+    "doces e sobremesas",
+    "lanches",
+    "prato único",
+    "light",
+    "alimentação saudável"
+  ]
+
+  for(let i= 0; i< categories.length; i++){
     await prisma.category.create({
       data:{
-        name: `Bolos`
+        name: categories[i]
       }
     })
   }
