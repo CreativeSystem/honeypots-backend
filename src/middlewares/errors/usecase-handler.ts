@@ -2,7 +2,7 @@ import { ErrorRequestHandler } from 'express'
 
 import { UseCaseError } from '@/errors'
 
-export const useCaseHandler: ErrorRequestHandler = (
+export const useCaseErrorHandler: ErrorRequestHandler = (
   error: Error,_,res,next
 ): void => {
   if (error instanceof UseCaseError) {

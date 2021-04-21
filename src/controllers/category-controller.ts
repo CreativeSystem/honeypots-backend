@@ -9,8 +9,8 @@ export const categoriesController: RequestHandler = async (
   const { limit, offset } = req.query
 
   const categories = await findAllCategories({
-    limit: parseInt(limit as string),
-    offset: parseInt(offset as string)
+    limit: parseInt((limit || '5') as string),
+    offset: parseInt((offset || '0') as string)
   })
 
   res.status(200).json(categories)

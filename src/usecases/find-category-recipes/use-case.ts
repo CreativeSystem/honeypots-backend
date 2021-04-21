@@ -7,7 +7,7 @@ export const findCategoryRecipes = async ({ id, limit, offset }: CategoryPage): 
   const total = await prisma.recipe.count({
     where: {
       categories: {
-        some: {
+        every: {
           id
         }
       }
@@ -22,7 +22,7 @@ export const findCategoryRecipes = async ({ id, limit, offset }: CategoryPage): 
     },
     where: {
       categories: {
-        some: {
+        every: {
           id
         }
       }
@@ -41,7 +41,7 @@ export const findCategoryRecipes = async ({ id, limit, offset }: CategoryPage): 
       visualization_count: 0,
       liked: false,
       visualized: false,
-      photos_url: [],
+      photos_url: ['https://saborgostoso.com.br/wp-content/uploads/2020/08/WhatsApp-Image-2020-12-27-at-20.20.47.jpeg'],
       recipe_detail_url: '',
       toggle_like_url: ''
     }))

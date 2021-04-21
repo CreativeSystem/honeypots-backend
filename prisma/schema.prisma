@@ -48,7 +48,6 @@ model Recipe {
 
 model RecipeImage{
   id    String  @id @default(uuid()) @db.Char(36)
-
   recipe Recipe @relation(fields: [recipeId], references: [id])
   recipeId String @map("recipe_id") @db.Char(36)
 

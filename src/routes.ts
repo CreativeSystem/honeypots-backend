@@ -11,10 +11,12 @@ import {
   categoriesController,
   categoryRecipesController,
   recipeDetailController,
-  createRecipeController
+  createRecipeController,
+  searchRecipesController,
+  feedController
 } from '@/controllers'
 
-import { errorHandlerDecorator,validatorErrorHandler,errorHandler,useCaseHandler } from './middlewares'
+import { errorHandlerDecorator,validatorErrorHandler,errorHandler,useCaseErrorHandler } from './middlewares'
 
 const router = Router()
 
@@ -49,8 +51,10 @@ router.post('/users',errorHandlerDecorator(registerUserController))
 router.get('/category',errorHandlerDecorator(categoriesController))
 router.get('/category/:id/recipes',errorHandlerDecorator(categoryRecipesController))
 
+router.get('/recipe/search', errorHandlerDecorator(searchRecipesController))
 router.get('/recipe/:id',errorHandlerDecorator(recipeDetailController))
-router.get('/recipe/search', (req,res) => res.json(req.user))
+
+router.get('/feed', errorHandlerDecorator(feedController))
 
 // Private Endpoints
 
@@ -58,10 +62,8 @@ router.use(passport.authenticate('jwt'))
 
 router.post('/recipe',errorHandlerDecorator(createRecipeController))
 
-router.get('/feed', (req,res) => res.json(req.user))
-
 router.use(validatorErrorHandler)
-router.use(useCaseHandler)
+router.use(useCaseErrorHandler)
 router.use(errorHandler)
 
 export default router

@@ -21,6 +21,7 @@ CREATE TABLE "users" (
 CREATE TABLE "recipes" (
     "id" CHAR(36) NOT NULL,
     "name" VARCHAR(100) NOT NULL,
+    "description" VARCHAR(255) NOT NULL,
     "preparation_time" INTEGER NOT NULL,
     "owner_id" CHAR(36) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -41,6 +42,7 @@ CREATE TABLE "recipe_images" (
 -- CreateTable
 CREATE TABLE "recipe_sections" (
     "id" CHAR(36) NOT NULL,
+    "name" TEXT NOT NULL,
     "order" INTEGER NOT NULL,
     "recipe_id" CHAR(36) NOT NULL,
     "super_section_id" CHAR(36),

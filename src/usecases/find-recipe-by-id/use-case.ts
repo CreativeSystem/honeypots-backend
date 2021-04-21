@@ -49,7 +49,7 @@ export const findRecipeById = async (id: string): Promise<RecipeDetailDTO> => {
     liked: false,
     visualization_count: 0,
     visualized: false,
-    photos_url: recipe.images.map(image => '' + id),
+    photos_url: ['https://saborgostoso.com.br/wp-content/uploads/2020/08/WhatsApp-Image-2020-12-27-at-20.20.47.jpeg'],
     owner: {
       name: recipe.owner.name,
       profile_url: ''

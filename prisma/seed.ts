@@ -6,6 +6,8 @@ import { Prisma, PrismaClient,PrismaPromise } from '@prisma/client'
 
 import { Password } from '../src/utils/password'
 
+import recipes from './recipes.json'
+
 const progress = new SingleBar({
   format: `${yellow('{value}/{total}')} | ${green('{bar}')} | ${cyan('{step}')}`,
   barCompleteChar: '\u2588',
@@ -93,11 +95,79 @@ async function main() {
   ]
 
   for(let i= 0; i< categories.length; i++){
-    await prisma.category.create({
+    const { id } = await prisma.category.create({
       data:{
         name: categories[i]
       }
     })
+    
+    for(let i = 0; i < 10; i++) {
+      const recipeData = recipes[0]
+      recipeData.categories.push({
+        id
+      })
+  
+      const { name,description,categories, preparation, ingredients, preparation_time: preparationTime } = recipeData
+      
+      const owner = await prisma.user.findFirst()
+
+      const recipe = await prisma.recipe.create({
+        data: {
+          name,
+          description,
+          preparationTime,
+          owner: {
+            connect: {
+              id: owner.id
+            }
+          },
+          categories: {
+            connect: categories
+          }
+        }
+      })
+
+      for (let i = 0; i < ingredients.length; i++) {
+        const ingredient = ingredients[i]
+        await prisma.recipeSection.create({
+          data: {
+            order: i,
+            name: ingredient.section_name,
+            ingredients: {
+              createMany: {
+                data: ingredient.section_ingredients
+              }
+            },
+            recipe: {
+              connect: {
+                id: recipe.id
+              }
+            }
+          }
+        })
+      }
+
+      for (let i = 0; i < preparation.length; i++) {
+        const direction = preparation[i]
+        await prisma.recipeSection.create({
+          data: {
+            order: i,
+            name: direction.section_name,
+            directions: {
+              createMany: {
+                data: direction.section_steps
+              }
+            },
+            recipe: {
+              connect: {
+                id: recipe.id
+              }
+            }
+          }
+        })
+      }
+    }
+
   }
 
   progress.increment({

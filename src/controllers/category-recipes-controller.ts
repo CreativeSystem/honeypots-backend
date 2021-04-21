@@ -9,8 +9,8 @@ export const categoryRecipesController: RequestHandler = async (
   const { limit, offset } = req.query
 
   const recipes = await findCategoryRecipes({
-    limit: parseInt(limit as string),
-    offset: parseInt(offset as string),
+    limit: parseInt((limit || '5') as string),
+    offset: parseInt((offset || '0') as string),
     id: req.params.id
   })
 

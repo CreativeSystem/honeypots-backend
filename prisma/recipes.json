@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Bolo de fuba",
+    "description": "",
+    "preparation_time": 0,
+    "categories": [],
+    "ingredients": [
+      {
+        "type": "Ingredient",
+        "section_name": "Recheio",
+        "section_ingredients": [
+          {
+            "name": "farinha",
+            "order": 1,
+            "quantity": 5,
+            "unit": "colheres de cha"
+          }
+        ]
+      }
+    ],
+    "preparation": [
+      {
+        "type": "Preparation",
+        "section_name": "Recheio",
+        "section_steps": [
+          {
+            "order": 1,
+            "description": "descrição da preparação do recheio"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "string",
+    "preparation_time": 0,
+    "categories": [],
+    "ingredients": [
+      {
+        "type": "Ingredient",
+        "section_name": "Recheio",
+        "section_ingredients": [
+          {
+            "name": "farinha",
+            "order": 1,
+            "quantity": 5,
+            "unit": "colheres de cha"
+          }
+        ]
+      }
+    ],
+    "preparation": [
+      {
+        "type": "Preparation",
+        "section_name": "Recheio",
+        "section_steps": [
+          {
+            "order": 1,
+            "description": "descrição da preparação do recheio"
+          }
+        ]
+      }
+    ]
+  }
+]
