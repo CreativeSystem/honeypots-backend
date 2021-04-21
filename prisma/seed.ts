@@ -103,6 +103,7 @@ async function main() {
     
     for(let i = 0; i < 10; i++) {
       const recipeData = recipes[0]
+      recipeData.categories = []
       recipeData.categories.push({
         id
       })
